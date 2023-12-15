@@ -43,5 +43,6 @@
   "You are receiving this email because we received a password reset request for your account.": "您收到此电子邮件是因为我们收到了您帐户的密码重设请求。",
   "Your email address is not verified.": "您的电子邮件尚未验证通过",
   "Whoops!": "哎呦！",
-  "Email Address":"邮箱~"
+  "Email Address":"邮箱~",
+  "validation.captcha":"请输入正确的验证码哈！！"
 }
