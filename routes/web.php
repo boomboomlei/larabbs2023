@@ -43,3 +43,9 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 */
 
 
+Route::resource("users","UsersController",['only'=>['show','update','edit']]); // 等同于以下
+/*
+ Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+ Route::put('/users/{user}', 'UsersController@update')->name('users.update');
+*/
