@@ -29,10 +29,13 @@ class UserRequest extends FormRequest
             'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
             'email'=>'required|email',
             'introduction'=>'min:6|max:80',
+            "avatar"=>'mimes:png,jpg,gif,jpeg|dimensions:min_width=260,min_height=260',
         ];
     }
     public function messages(){
         return [
+            'avatar.mines'=>'头像必须是png,jpg,gif,jpeg',
+            'avatar.dimensions'=>'图形太小了~~',
             'name.regex'=>'名字格式不对哦',
             'name.between'=>'名字数量在3-25个的哦~',
             'introduction.min'=>"太少了哦~~",
