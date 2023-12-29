@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/",'PagesController@root')->name('root');
+
 Auth::routes(["verify"=>true]);//此处等同于以下
 /*
 // 用户身份验证相关的路由
@@ -51,3 +52,5 @@ Route::resource("users","UsersController",['only'=>['show','update','edit']]); /
 */
 
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::resource("categories","CategoriesController",['only'=>['show']]);
