@@ -41,7 +41,7 @@
                 <select class="form-control" name="category_id" required>
                   <option value="" hidden disabled selected>请选择分类</option>
                   @foreach ($categories as $value)
-                  <option {{ $topic->category->id==$value->id? "selected":"" }} value="{{ $value->id }}">{{ $value->name }}</option>
+                  <option {{ $topic->category_id==$value->id? "selected":"" }} value="{{ $value->id }}">{{ $value->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -61,7 +61,7 @@
 
 @stop
 
-{{-- @section('scripts')
+ @section('scripts')
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
@@ -86,4 +86,4 @@
       });
     });
   </script>
-@stop --}}
+@stop
