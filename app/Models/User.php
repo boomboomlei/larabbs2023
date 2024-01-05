@@ -8,9 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 
+use Auth;
+
 class User extends Authenticatable implements MustVerifyEmailContract
 {
-    use HasFactory, Notifiable, MustVerifyEmailTrait;
+    use HasFactory, MustVerifyEmailTrait;
+
+    use Notifiable {
+        notify as protected laravelNotify;
+    }
 
     protected $fillable = [
         'name',
@@ -40,6 +46,17 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function replies(){
         return $this->hasMany(Reply::class);
+    }
+
+    public function notify($instance){
+        if($this->id == Auth::id() && get_class($instance)!="Illuminate\Auth\Notifications\VerifyEmail"){
+            return;
+        }
+
+        if(method_exists($instance,'toDatabase')){
+            $this->increment('notification_count');
+        }
+        $this->laravelNotify($instance);
     }
     
 }
