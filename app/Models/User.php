@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     }
 
     public function notify($instance){
+         echo  "666";
         if($this->id == Auth::id() && get_class($instance)!="Illuminate\Auth\Notifications\VerifyEmail"){
             return;
         }
