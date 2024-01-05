@@ -32,9 +32,9 @@ class TopicsController extends Controller
 			return redirect($topic->link(),301);
 		}
 
-		$replies = Reply::where(['topic_id'=>$topic->id])->paginate(5);
+		//$replies = Reply::where(['topic_id'=>$topic->id])->paginate(5);
 
-        return view('topics.show', compact('topic','replies'));
+        return view('topics.show', compact('topic'));
     }
 
 	public function create(Topic $topic)
