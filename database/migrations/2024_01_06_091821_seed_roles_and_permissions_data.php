@@ -21,17 +21,17 @@ class SeedRolesAndPermissionsData extends Migration
         app(Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         
 
-        Permission::create(['name'=>'manager_contents']);
-        Permission::create(['name'=>'manager_users']);
+        Permission::create(['name'=>'manage_contents']);
+        Permission::create(['name'=>'manage_users']);
         Permission::create(['name'=>'edit_settings']);
 
         $founder=Role::create(['name'=>'Founder']);
-        $founder->givePermissionTo('manager_contents');
-        $founder->givePermissionTo('manager_users');
+        $founder->givePermissionTo('manage_contents');
+        $founder->givePermissionTo('manage_users');
         $founder->givePermissionTo('edit_settings');
 
         $maintainer=Role::create(['name'=>'Maintainer']);
-        $maintainer->givePermissionTo('manager_contents');
+        $maintainer->givePermissionTo('manage_contents');
         
     }
 
@@ -49,7 +49,7 @@ class SeedRolesAndPermissionsData extends Migration
         Model::unguard();
         DB::table($tableNames['role_has_permissions'])->delete();
         DB::table($tableNames['model_has_roles'])->delete();
-        DB::table($tableNames['model_has_permission'])->delete();
+        DB::table($tableNames['model_has_permissions'])->delete();
         DB::table($tableNames['roles'])->delete();
         DB::table($tableNames['permissions'])->delete();
         Model::reguard();
