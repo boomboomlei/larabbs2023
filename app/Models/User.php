@@ -48,8 +48,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasMany(Reply::class);
     }
 
-    public function notify($instance){
-         echo  "666";
+    public function TopicNotify($instance){
         if($this->id == Auth::id() && get_class($instance)!="Illuminate\Auth\Notifications\VerifyEmail"){
             return;
         }

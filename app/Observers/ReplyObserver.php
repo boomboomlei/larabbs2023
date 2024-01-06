@@ -23,11 +23,15 @@ class ReplyObserver
 
     public  function created(Reply $reply){
         // $reply->topic->increment('reply_count',1);
-        $reply->topic->reply_count = $reply->topic->replies->count();
-        $reply->topic->save();
+        // $reply->topic->reply_count = $reply->topic->replies->count();
+        // $reply->topic->save();
+        $reply->topic->updateReplyCount();
+        $reply->topic->user->TopicNotify(new TopicReplied($reply));
 
-        $reply->topic->user->notify(new TopicReplied($reply));
+    }
 
+    public function deleted(Reply $reply){
+        $reply->topic->updateReplyCount();
     }
 
     
