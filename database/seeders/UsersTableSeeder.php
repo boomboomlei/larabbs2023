@@ -21,9 +21,8 @@ class UsersTableSeeder extends Seeder
         $user->email="summer@example.com";
         $user->avatar=config("app.url")."/"."head-default.jpeg";
         $user->save();
-
-        
         $user->assignRole('Founder');
+        
         $user=User::find(2);
         $user->assignRole('Maintainer');
     }
