@@ -10,6 +10,8 @@ use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 
 use Spatie\Permission\Traits\HasRoles;
 
+
+use  Illuminate\Support\Str;
 use Auth;
 
 class User extends Authenticatable implements MustVerifyEmailContract
@@ -68,4 +70,20 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->unreadNotifications->markAsRead();
     }
     
+
+
+    //修改器
+    public function setPasswordAttribute($value){
+        if(strlen($value) !=60){
+            $value=bcrypt($value);
+        }
+        $this->attributes['password']=$value;
+    }
+
+    public function setAvatarAttribute($path){
+        if(!Str::startsWith($path,'http')){
+            $path=config("app.url")."/uploads/images/avatars/$path";
+        }
+        $this->attributes["avatar"]=$path;
+    }
 }

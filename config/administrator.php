@@ -21,7 +21,7 @@ return array(
      *
      * @type string
      */
-    'title' =>  env('APP_NAME', 'Laravel'),
+    'title' => 'Laravel-admin',
 
 
     /*
