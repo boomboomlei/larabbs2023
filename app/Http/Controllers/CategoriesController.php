@@ -9,8 +9,9 @@ use App\Models\Category;
 
 class CategoriesController extends Controller
 {
-    public function show(Category $category){
+    public function show(Category $category,User $user){
         $topics=Topic::where("category_id",$category->id)->paginate(15);
-        return view("topics.index",["topics"=>$topics,'category'=>$category]);
+        $active_users=$user->getActiveUsers();
+        return view("topics.index",["topics"=>$topics,'category'=>$category,'active_users'=>$active_users]);
     }
 }
